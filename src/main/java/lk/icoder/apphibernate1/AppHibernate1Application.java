@@ -1,6 +1,5 @@
 package lk.icoder.apphibernate1;
 
-import lk.icoder.apphibernate1.entity.Course;
 import lk.icoder.apphibernate1.repository.CourseRepository;
 import lk.icoder.apphibernate1.repository.StudentRepository;
 import org.slf4j.Logger;
