@@ -3,10 +3,13 @@ package lk.icoder.apphibernate1.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lk.icoder.apphibernate1.entity.Course;
+import lk.icoder.apphibernate1.entity.relationship.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @Transactional
@@ -60,5 +63,20 @@ public class CourseRepository {
         Course course1 = entityManager.find(Course.class, 10001L);
         course1.setName("Check whether timestamp is updated");
     }
-    
+
+    public void addReviewsForCourse(Long courseId, List<Review> reviews) {
+        // get the course 10003
+        Course course = findById(courseId);
+        logger.info("course.getReviews -> {}", course.getReviews());
+        // add 2 reviews to it
+
+        for (Review review : reviews) {
+            // setting relationship
+            course.addReview(review);
+            review.setCourse(course);
+
+            // save it to the database
+            entityManager.persist(review);
+        }
+    }
 }

@@ -3,6 +3,8 @@ package lk.icoder.apphibernate1.entity.relationship;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student implements Serializable {

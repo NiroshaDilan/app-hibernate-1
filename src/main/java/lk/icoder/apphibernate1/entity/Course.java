@@ -1,10 +1,13 @@
 package lk.icoder.apphibernate1.entity;
 
 import jakarta.persistence.*;
+import lk.icoder.apphibernate1.entity.relationship.Review;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NamedQuery(name = "get_all_courses", query = "Select c From Course c")
@@ -23,6 +26,9 @@ public class Course {
 
 //    @Column(name = "fullName", nullable = false, length = 255)
     private String name;
+
+    @OneToMany(mappedBy = "course")
+    private List<Review> reviews = new ArrayList<>();
 
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
@@ -56,6 +62,18 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    public void removeReview(Review review) {
+        this.reviews.remove(review);
     }
 
     @Override

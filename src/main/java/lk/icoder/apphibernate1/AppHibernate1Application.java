@@ -1,5 +1,6 @@
 package lk.icoder.apphibernate1;
 
+import lk.icoder.apphibernate1.entity.relationship.Review;
 import lk.icoder.apphibernate1.repository.CourseRepository;
 import lk.icoder.apphibernate1.repository.StudentRepository;
 import org.slf4j.Logger;
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class AppHibernate1Application implements CommandLineRunner {
@@ -33,5 +37,11 @@ public class AppHibernate1Application implements CommandLineRunner {
 //        courseRepository.save(new Course(10002L, "Microservices 1000"));
 
 //        studentRepository.saveStudentWithPassport();
+
+        // ==== Many to One =====
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(new Review("5", "Great Hands on Stuff"));
+        reviews.add(new Review("5", "Hats off"));
+//        courseRepository.addReviewsForCourse(10001L, reviews);
     }
 }

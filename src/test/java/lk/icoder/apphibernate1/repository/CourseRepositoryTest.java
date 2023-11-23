@@ -1,7 +1,10 @@
 package lk.icoder.apphibernate1.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import lk.icoder.apphibernate1.AppHibernate1Application;
 import lk.icoder.apphibernate1.entity.Course;
+import lk.icoder.apphibernate1.entity.relationship.Review;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +19,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class CourseRepositoryTest {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     CourseRepository repository;
+
+    @Autowired
+    EntityManager em;
 
     @Test
     @DirtiesContext // automatically reset the data
@@ -56,5 +64,19 @@ class CourseRepositoryTest {
     @Test
     void updateCreateTimestampTest() {
         repository.UpdateCreateTimestampTest();
+    }
+
+    @Test
+    @Transactional
+    public void retrieveReviewsForCourse() {
+        Course course = repository.findById(10001L);
+        logger.info("reviews -> {}", course.getReviews());
+    }
+
+    @Test
+//    @Transactional
+    public void retrieveCourseForReviews() {
+        Review review = em.find(Review.class, 50001L);
+        logger.info("reviews -> {}", review.getCourse());
     }
 }
