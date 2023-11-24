@@ -7,11 +7,8 @@ import lk.icoder.apphibernate1.entity.relationship.Student;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.LoggerFactoryFriend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class StudentRepositoryTest {
@@ -63,5 +60,13 @@ class StudentRepositoryTest {
         Passport passport = em.find(Passport.class, 2);
         logger.info("passport -> {}", passport);
         logger.info("student -> {}", passport.getStudent());
+    }
+
+    @Test
+    @Transactional
+    public void retrieveStudentAndCourse() {
+        Student student = em.find(Student.class, 1);
+        logger.info("Student -> {}", student);
+        logger.info("Courses -> {}", student.getCourses());
     }
 }

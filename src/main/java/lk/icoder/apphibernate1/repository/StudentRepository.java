@@ -2,6 +2,7 @@ package lk.icoder.apphibernate1.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import lk.icoder.apphibernate1.entity.Course;
 import lk.icoder.apphibernate1.entity.relationship.Passport;
 import lk.icoder.apphibernate1.entity.relationship.Student;
 import org.slf4j.Logger;
@@ -52,6 +53,19 @@ public class StudentRepository {
 
         Student Student1 = entityManager.find(Student.class, 10001L);
         Student1.setName("Check whether timestamp is updated");
+    }
+
+    public void insertStudentAndCourse() {
+        Student student = new Student("Jack");
+        Course course = new Course("React Js 100 steps");
+
+        entityManager.persist(student);
+        entityManager.persist(course);
+
+        student.addCourses(course);
+        course.addStudent(student);
+
+        entityManager.persist(student);
     }
     
 }

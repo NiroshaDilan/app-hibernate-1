@@ -1,6 +1,7 @@
 package lk.icoder.apphibernate1.entity.relationship;
 
 import jakarta.persistence.*;
+import lk.icoder.apphibernate1.entity.Course;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +19,12 @@ public class Student implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
+
+    @ManyToMany
+    @JoinTable(name = "STUDENT_COURSE",
+    joinColumns = @JoinColumn(name = "STUDENT_ID"),
+    inverseJoinColumns = @JoinColumn(name = "COURSE_ID"))
+    private List<Course> courses = new ArrayList<>();
 
     public Student() {
     }
@@ -53,6 +60,14 @@ public class Student implements Serializable {
 
     public void setPassport(Passport passport) {
         this.passport = passport;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void addCourses(Course course) {
+        this.courses.add(course);
     }
 
     @Override
