@@ -1,6 +1,9 @@
 package lk.icoder.apphibernate1;
 
+import lk.icoder.apphibernate1.entity.relationship.FullTimeEmployee;
+import lk.icoder.apphibernate1.entity.relationship.PartTimeEmployee;
 import lk.icoder.apphibernate1.repository.CourseRepository;
+import lk.icoder.apphibernate1.repository.EmployeeRepository;
 import lk.icoder.apphibernate1.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.math.BigDecimal;
 
 @SpringBootApplication
 public class AppHibernate1Application implements CommandLineRunner {
@@ -19,6 +24,9 @@ public class AppHibernate1Application implements CommandLineRunner {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(AppHibernate1Application.class, args);
@@ -39,6 +47,13 @@ public class AppHibernate1Application implements CommandLineRunner {
 //        reviews.add(new Review("5", "Great Hands on Stuff"));
 //        reviews.add(new Review("5", "Hats off"));
 //        courseRepository.addReviewsForCourse(10001L, reviews);
-        studentRepository.insertStudentAndCourse();
+//        studentRepository.insertStudentAndCourse();
+
+        employeeRepository
+                .insert(new FullTimeEmployee("Amal", new BigDecimal("1000")));
+        employeeRepository
+                .insert(new PartTimeEmployee("Juroo", new BigDecimal("5000")));
+
+        logger.info("All Employees -> {}", employeeRepository.retrieveAllEmployees());
     }
 }
