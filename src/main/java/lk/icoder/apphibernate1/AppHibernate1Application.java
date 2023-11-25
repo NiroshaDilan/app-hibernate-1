@@ -54,6 +54,9 @@ public class AppHibernate1Application implements CommandLineRunner {
         employeeRepository
                 .insert(new PartTimeEmployee("Juroo", new BigDecimal("5000")));
 
-        logger.info("All Employees -> {}", employeeRepository.retrieveAllEmployees());
+//        logger.info("All Employees -> {}", employeeRepository.retrieveAllEmployees()); // getting error when @MappedSuperclass
+//        using
+        logger.info("All Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployees());
+        logger.info("All Part Time Employees -> {}", employeeRepository.retrieveAllPartTimeEmployees());
     }
 }

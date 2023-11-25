@@ -4,6 +4,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lk.icoder.apphibernate1.entity.Course;
 import lk.icoder.apphibernate1.entity.relationship.Employee;
+import lk.icoder.apphibernate1.entity.relationship.FullTimeEmployee;
+import lk.icoder.apphibernate1.entity.relationship.PartTimeEmployee;
 import lk.icoder.apphibernate1.entity.relationship.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +29,17 @@ public class EmployeeRepository {
 
     public List<Employee> retrieveAllEmployees() {
         return entityManager.createQuery("Select e from Employee e", Employee.class)
+                .getResultList();
+    }
+
+    // when use @MappedSuperClass
+    public List<PartTimeEmployee> retrieveAllPartTimeEmployees() {
+        return entityManager.createQuery("Select e from PartTimeEmployee e", PartTimeEmployee.class)
+                .getResultList();
+    }
+
+    public List<FullTimeEmployee> retrieveAllFullTimeEmployees() {
+        return entityManager.createQuery("Select e from FullTimeEmployee e", FullTimeEmployee.class)
                 .getResultList();
     }
 }

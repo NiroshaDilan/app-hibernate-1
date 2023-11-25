@@ -2,9 +2,10 @@ package lk.icoder.apphibernate1.entity.relationship;
 
 import jakarta.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // store in a single table.
-@DiscriminatorColumn(name = "EmployeeType")
+@MappedSuperclass // if we use this, we cannot use @Entity
+//@Entity
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // store in a single table.
+//@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Employee {
 
     @Id
