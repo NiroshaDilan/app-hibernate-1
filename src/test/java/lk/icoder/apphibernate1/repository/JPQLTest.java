@@ -84,11 +84,5 @@ class JPQLTest {
         logger.info("Results -> {}", resultList);
     }
 
-//    JOIN => Select c, s from Course c JOIN c.students s
-//    LEFT JOIN => Select c, s from Course c LEFT JOI c.students s
 
-    @Test
-    public void join() {
-
-    }
 }
