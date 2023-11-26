@@ -49,14 +49,14 @@ public class AppHibernate1Application implements CommandLineRunner {
 //        courseRepository.addReviewsForCourse(10001L, reviews);
 //        studentRepository.insertStudentAndCourse();
 
-        employeeRepository
-                .insert(new FullTimeEmployee("Amal", new BigDecimal("1000")));
-        employeeRepository
-                .insert(new PartTimeEmployee("Juroo", new BigDecimal("5000")));
+//        employeeRepository
+//                .insert(new FullTimeEmployee("Amal", new BigDecimal("1000")));
+//        employeeRepository
+//                .insert(new PartTimeEmployee("Juroo", new BigDecimal("5000")));
 
 //        logger.info("All Employees -> {}", employeeRepository.retrieveAllEmployees()); // getting error when @MappedSuperclass
 //        using
-        logger.info("All Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployees());
-        logger.info("All Part Time Employees -> {}", employeeRepository.retrieveAllPartTimeEmployees());
+//        logger.info("All Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployees());
+//        logger.info("All Part Time Employees -> {}", employeeRepository.retrieveAllPartTimeEmployees());
     }
 }
