@@ -40,7 +40,7 @@ class CourseSpringDataRepositoryTest {
         Course course = new Course("Docker Course");
         repository.save(course);
         course.setName("Docker Course - Updated");
-        repository.save(course);
+        repository.save(course); // update the course
     }
 
     @Test
@@ -52,5 +52,39 @@ class CourseSpringDataRepositoryTest {
     public void sortCourseSpringDataRepository() {
 //        Sort sort = new Sort(Sort.Direction.DESC, "name");
 //        logger.info("Sorted Courses -> {}", repository.findAll(sort));
+    }
+
+    @Test
+    public void findCourseByName() {
+        logger.info("FindByName -> {} ",
+                repository.findCourseByName("Docker course - Updated"));
+    }
+
+    @Test
+    void coursersWith100StepsInName() {
+    }
+
+    @Test
+    void coursersWith100StepsInNameNative() {
+        logger.info("native -> {}", repository.coursersWith100StepsInNameNative());
+    }
+
+    @Test
+    void coursersWith100StepsInNameUsingNamedQuery() {
+    }
+
+    @Test
+    void coursersWith100StepsInNameParam() {
+        logger.info("param 1-> {}",
+                repository.coursersWith100StepsInNameParam("Hibernate course 100 Steps"));
+        logger.info("param 2-> {}",
+                repository.coursersWith100StepsInNameParam("Docker course - Updated"));
+        logger.info("param 3-> {}",
+                repository.coursersWith100StepsInNameParam("HTML course"));
+        logger.info("param 4-> {}",
+                repository.coursersWith100StepsInNameParam("JPA 100 Steps"));
+        logger.info("param 5-> {}",
+                repository.coursersWith100StepsInNameParam("Java"));
+
     }
 }
